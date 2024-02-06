@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.Core", "Services\Ca
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDFramework", "Services\DDDFramework\DDDFramework.csproj", "{D2CD1C17-68C7-4209-9563-48E81CD0B455}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.Application.Contract", "Services\Catalog\Catalog.Application.Contract\Catalog.Application.Contract.csproj", "{E4C4D08B-A938-4CA4-8DC4-A1859C3BC58E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{D2CD1C17-68C7-4209-9563-48E81CD0B455}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2CD1C17-68C7-4209-9563-48E81CD0B455}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2CD1C17-68C7-4209-9563-48E81CD0B455}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4C4D08B-A938-4CA4-8DC4-A1859C3BC58E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4C4D08B-A938-4CA4-8DC4-A1859C3BC58E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4C4D08B-A938-4CA4-8DC4-A1859C3BC58E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4C4D08B-A938-4CA4-8DC4-A1859C3BC58E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -54,6 +60,7 @@ Global
 		{29B8A7BD-1C06-49CA-9C18-EBCCAD089FCA} = {C4E5C09D-F38F-4F94-8100-BE4B40BAE03C}
 		{C4C73B16-A000-4517-A247-7E53F09A5A07} = {C4E5C09D-F38F-4F94-8100-BE4B40BAE03C}
 		{D2CD1C17-68C7-4209-9563-48E81CD0B455} = {98DD7A19-1D37-4C50-9DFC-B2A4F4D550E0}
+		{E4C4D08B-A938-4CA4-8DC4-A1859C3BC58E} = {C4E5C09D-F38F-4F94-8100-BE4B40BAE03C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {93176B65-A452-45E2-AB44-478FAB6F1CD7}
