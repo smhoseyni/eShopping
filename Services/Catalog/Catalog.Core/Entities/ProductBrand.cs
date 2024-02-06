@@ -1,9 +1,8 @@
-using MongoDB.Bson.Serialization.Attributes;
-
+using DDDFramework.Core.Domain.Models;
 namespace Catalog.Core.Entities;
 
-public class ProductBrand : BaseEntity
+
+public class ProductBrand : BaseEntity<ProductBrand, Guid>
 {
-    [BsonElement("Name")]
     public string Name { get; set; }
 }
