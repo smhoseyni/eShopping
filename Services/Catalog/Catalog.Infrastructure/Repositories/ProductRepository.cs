@@ -1,9 +1,9 @@
 using Catalog.Core.Entities;
-using Catalog.Core.Repositories;
 using Catalog.Core.Specs;
 using Catalog.Infrastructure.Data;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using Catalog.Contracts;
 
 namespace Catalog.Infrastructure.Repositories;
 
@@ -16,9 +16,9 @@ public class ProductRepository : IProductRepository, IBrandRepository, ITypesRep
         _context = context;
     }
     
-    public async Task<Pagination<Product>> GetProducts(CatalogSpecParams catalogSpecParams)
+    public async Task<Pagination<ProductDto>> GetProducts(CatalogSpecParams catalogSpecParams)
     {
-        var builder = Builders<Product>.Filter;
+        var builder = Builders<ProductDto>.Filter;
         var filter = builder.Empty;
         if(!string.IsNullOrEmpty(catalogSpecParams.Search))
         {
@@ -38,7 +38,7 @@ public class ProductRepository : IProductRepository, IBrandRepository, ITypesRep
 
         if (!string.IsNullOrEmpty(catalogSpecParams.Sort))
         {
-            return new Pagination<Product>
+            return new Pagination<ProductDto>
             {
                 PageSize = catalogSpecParams.PageSize,
                 PageIndex = catalogSpecParams.PageIndex,
@@ -48,14 +48,14 @@ public class ProductRepository : IProductRepository, IBrandRepository, ITypesRep
             };
         }
 
-        return new Pagination<Product>
+        return new Pagination<ProductDto>
         {
             PageSize = catalogSpecParams.PageSize,
             PageIndex = catalogSpecParams.PageIndex,
             Data = await _context
                 .Products
                 .Find(filter)
-                .Sort(Builders<Product>.Sort.Ascending("Name"))
+                .Sort(Builders<ProductDto>.Sort.Ascending("Name"))
                 .Skip(catalogSpecParams.PageSize * (catalogSpecParams.PageIndex - 1))
                 .Limit(catalogSpecParams.PageSize)
                 .ToListAsync(),
@@ -63,7 +63,7 @@ public class ProductRepository : IProductRepository, IBrandRepository, ITypesRep
         };
     }
 
-    private async Task<IReadOnlyList<Product>> DataFilter(CatalogSpecParams catalogSpecParams, FilterDefinition<Product> filter)
+    private async Task<IReadOnlyList<ProductDto>> DataFilter(CatalogSpecParams catalogSpecParams, FilterDefinition<ProductDto> filter)
     {
         switch (catalogSpecParams.Sort)
         {
@@ -71,7 +71,7 @@ public class ProductRepository : IProductRepository, IBrandRepository, ITypesRep
                 return await _context
                     .Products
                     .Find(filter)
-                    .Sort(Builders<Product>.Sort.Ascending("Price"))
+                    .Sort(Builders<ProductDto>.Sort.Ascending("Price"))
                     .Skip(catalogSpecParams.PageSize * (catalogSpecParams.PageIndex - 1))
                     .Limit(catalogSpecParams.PageSize)
                     .ToListAsync();
@@ -79,7 +79,7 @@ public class ProductRepository : IProductRepository, IBrandRepository, ITypesRep
                 return await _context
                     .Products
                     .Find(filter)
-                    .Sort(Builders<Product>.Sort.Descending("Price"))
+                    .Sort(Builders<ProductDto>.Sort.Descending("Price"))
                     .Skip(catalogSpecParams.PageSize * (catalogSpecParams.PageIndex - 1))
                     .Limit(catalogSpecParams.PageSize)
                     .ToListAsync();
@@ -87,14 +87,14 @@ public class ProductRepository : IProductRepository, IBrandRepository, ITypesRep
                 return await _context
                     .Products
                     .Find(filter)
-                    .Sort(Builders<Product>.Sort.Ascending("Name"))
+                    .Sort(Builders<ProductDto>.Sort.Ascending("Name"))
                     .Skip(catalogSpecParams.PageSize * (catalogSpecParams.PageIndex - 1))
                     .Limit(catalogSpecParams.PageSize)
                     .ToListAsync();
         }
     }
 
-    public async Task<Product> GetProduct(string id)
+    public async Task<ProductDto> GetProduct(string id)
     {
         return await _context
             .Products
@@ -102,9 +102,9 @@ public class ProductRepository : IProductRepository, IBrandRepository, ITypesRep
             .FirstOrDefaultAsync();
     }
 
-    public async Task<IEnumerable<Product>> GetProductByName(string name)
+    public async Task<IEnumerable<ProductDto>> GetProductByName(string name)
     {
-        FilterDefinition<Product> filter = Builders<Product>.Filter.Eq(p => p.Name, name);
+        FilterDefinition<ProductDto> filter = Builders<ProductDto>.Filter.Eq(p => p.Name, name);
         return await _context
             .Products
             .Find(filter)
@@ -112,22 +112,22 @@ public class ProductRepository : IProductRepository, IBrandRepository, ITypesRep
 
     }
 
-    public async Task<IEnumerable<Product>> GetProductByBrand(string name)
+    public async Task<IEnumerable<ProductDto>> GetProductByBrand(string name)
     {
-        FilterDefinition<Product> filter = Builders<Product>.Filter.Eq(p => p.Brands.Name, name);
+        FilterDefinition<ProductDto> filter = Builders<ProductDto>.Filter.Eq(p => p.Brands.Name, name);
         return await _context
             .Products
             .Find(filter)
             .ToListAsync();
     }
 
-    public async Task<Product> CreateProduct(Product product)
+    public async Task<ProductDto> CreateProduct(ProductDto product)
     {
         await _context.Products.InsertOneAsync(product);
         return product;
     }
 
-    public async Task<bool> UpdateProduct(Product product)
+    public async Task<bool> UpdateProduct(ProductDto product)
     {
         var updateResult = await _context
             .Products
@@ -137,14 +137,14 @@ public class ProductRepository : IProductRepository, IBrandRepository, ITypesRep
 
     public async Task<bool> DeleteProduct( string id)
     {
-        FilterDefinition<Product> filter = Builders<Product>.Filter.Eq(p => p.Id, id);
+        FilterDefinition<ProductDto> filter = Builders<ProductDto>.Filter.Eq(p => p.Id, id);
         DeleteResult deleteResult = await _context
             .Products
             .DeleteOneAsync(filter);
         return deleteResult.IsAcknowledged && deleteResult.DeletedCount > 0;
     }
 
-    public async Task<IEnumerable<ProductBrand>> GetAllBrands()
+    public async Task<IEnumerable<ProductBrandDto>> GetAllBrands()
     {
         return await _context
             .Brands
@@ -152,7 +152,7 @@ public class ProductRepository : IProductRepository, IBrandRepository, ITypesRep
             .ToListAsync();
     }
 
-    public async Task<IEnumerable<ProductType>> GetAllTypes()
+    public async Task<IEnumerable<ProductTypeDto>> GetAllTypes()
     {
         return await _context
             .Types
