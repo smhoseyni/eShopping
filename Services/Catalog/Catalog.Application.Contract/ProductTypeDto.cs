@@ -6,8 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Catalog
-{
+namespace Catalog;
+
     public class ProductTypeDto
     {
         [BsonRepresentation(BsonType.String)]

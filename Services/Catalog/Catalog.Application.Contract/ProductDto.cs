@@ -31,7 +31,7 @@ public class ProductDto
 
 
     [BsonElement("types")]
-    public string Types { get; set; } // Assuming conversion to string if not stored as a complex object
+    public ProductTypeDto Types { get; set; } 
 
     [BsonElement("price")]
     [BsonRepresentation(BsonType.Decimal128)] // MongoDB supports high precision decimal for financial data
