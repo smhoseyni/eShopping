@@ -1,4 +1,4 @@
-using Catalog.Core.Entities;
+
 using Catalog.Core.Specs;
 using Catalog.Infrastructure.Data;
 using MongoDB.Bson;

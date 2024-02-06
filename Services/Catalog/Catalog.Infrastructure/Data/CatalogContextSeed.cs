@@ -1,5 +1,4 @@
 using System.Text.Json;
-using Catalog.Core.Entities;
 using MongoDB.Driver;
 using Catalog.Contracts;
 

@@ -1,4 +1,4 @@
-using Catalog.Core.Entities;
+
 using MongoDB.Driver;
 using Catalog.Contracts;
 
