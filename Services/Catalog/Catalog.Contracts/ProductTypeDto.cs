@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Catalog;
+namespace Catalog.Contracts;
 
-    public class ProductTypeDto
+public class ProductTypeDto
     {
         [BsonRepresentation(BsonType.String)]
         public string Id { get; set; }

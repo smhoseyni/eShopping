@@ -5,7 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
-namespace Catalog.Application.Contract;
+
+namespace Catalog.Contracts;
 
 public class ProductDto
 {
@@ -27,7 +28,7 @@ public class ProductDto
 
 
     [BsonElement("brand")]
-    public ProductBrandDto Brand { get; set; } // Use the DTO representation of ProductBrand
+    public ProductBrandDto Brands { get; set; } // Use the DTO representation of ProductBrand
 
 
     [BsonElement("types")]

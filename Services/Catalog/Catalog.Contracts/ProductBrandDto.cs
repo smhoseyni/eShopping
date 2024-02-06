@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Catalog;
+namespace Catalog.Contracts;
 public class ProductBrandDto
 {
     [BsonRepresentation(BsonType.String)]
