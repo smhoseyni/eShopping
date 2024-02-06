@@ -10,7 +10,7 @@ namespace Catalog;
 public class ProductBrandDto
 {
     [BsonRepresentation(BsonType.String)]
-    public Guid Id { get; set; }
+    public string Id { get; set; }
 
     [BsonElement("name")]
     public string Name { get; set; }

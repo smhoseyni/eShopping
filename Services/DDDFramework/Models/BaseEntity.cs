@@ -2,7 +2,7 @@
 {
     public class BaseEntity<TEntity, TId> : IModel
         where TEntity : BaseEntity<TEntity, TId>
-        where TId : struct
+       // where TId : struct
     {
         private int? _requestedHashCode;
 

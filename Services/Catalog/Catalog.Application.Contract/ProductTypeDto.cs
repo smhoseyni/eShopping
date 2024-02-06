@@ -11,7 +11,7 @@ namespace Catalog;
     public class ProductTypeDto
     {
         [BsonRepresentation(BsonType.String)]
-        public Guid Id { get; set; }
+        public string Id { get; set; }
 
         [BsonElement("name")]
         public string Name { get; set; }

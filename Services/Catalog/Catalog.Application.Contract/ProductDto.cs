@@ -10,8 +10,8 @@ namespace Catalog.Application.Contract;
 public class ProductDto
 {
     [BsonId]
-    [BsonRepresentation(BsonType.String)] // Store the Guid as a string for better readability or BsonType.Binary for efficiency
-    public Guid Id { get; set; }
+    [BsonRepresentation(BsonType.String)] 
+    public string Id { get; set; }
 
     [BsonElement("name")]
     public string Name { get; set; }

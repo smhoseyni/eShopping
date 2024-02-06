@@ -2,7 +2,7 @@
 using DDDFramework.Core.Domain.Models;
 namespace Catalog.Core.Entities;
 
-public class Product : BaseEntity<Product, Guid>
+public class Product : BaseEntity<Product, string>
 {
     public string Name { get; set; }
     public string Summary { get; set; }
